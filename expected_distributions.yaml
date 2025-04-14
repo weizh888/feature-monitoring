@@ -1,0 +1,113 @@
+# Expected distributions for feature monitoring
+# Format:
+# columns:
+#   column_name:
+#     type: numeric | categorical
+#     breakpoints: [list of breakpoints]  # Only for numeric type
+#     expected_prob:
+#       bucket_name: probability
+
+columns:
+  # Numeric variables with breakpoints
+  age:
+    type: numeric
+    breakpoints: [18, 25, 35, 45, 60]
+    expected_prob:
+      "(18, 25]": 0.2
+      "(25, 35]": 0.3
+      "(35, 45]": 0.3
+      "(45, 60]": 0.2
+
+  income:
+    type: numeric
+    breakpoints: [0, 30000, 60000, 90000, 120000, 150000]
+    expected_prob:
+      "(0, 30000]": 0.1
+      "(30000, 60000]": 0.2
+      "(60000, 90000]": 0.3
+      "(90000, 120000]": 0.25
+      "(120000, 150000]": 0.15
+
+  credit_score:
+    type: numeric
+    breakpoints: [300, 500, 600, 700, 800, 850]
+    expected_prob:
+      "(300, 500]": 0.05
+      "(500, 600]": 0.1
+      "(600, 700]": 0.2
+      "(700, 800]": 0.4
+      "(800, 850]": 0.25
+
+  # Boolean features represented as integers (-1, 0, 1)
+  is_active:
+    type: categorical
+    expected_prob:
+      "-1": 0.1
+      "0": 0.2
+      "1": 0.7
+
+  has_loan:
+    type: categorical
+    expected_prob:
+      "-1": 0.1
+      "0": 0.3
+      "1": 0.6
+
+  is_premium:
+    type: categorical
+    expected_prob:
+      "-1": 0.05
+      "0": 0.15
+      "1": 0.8
+
+  # Categorical variables
+  gender:
+    type: categorical
+    expected_prob:
+      M: 0.55
+      F: 0.45
+
+  education_level:
+    type: categorical
+    expected_prob:
+      High School: 0.2
+      Some College: 0.3
+      Bachelor's: 0.3
+      Master's: 0.15
+      PhD: 0.05
+
+  employment_status:
+    type: categorical
+    expected_prob:
+      Employed: 0.7
+      Unemployed: 0.1
+      Self-employed: 0.15
+      Retired: 0.05
+
+  # Geographic variables
+  region:
+    type: categorical
+    expected_prob:
+      North: 0.25
+      South: 0.25
+      East: 0.25
+      West: 0.25
+
+  # Product usage variables
+  subscription_tier:
+    type: categorical
+    expected_prob:
+      Basic: 0.5
+      Premium: 0.3
+      Enterprise: 0.2
+
+  # Time-based variables
+  days_since_last_purchase:
+    type: numeric
+    breakpoints: [0, 7, 30, 90, 180, 365]
+    expected_prob:
+      "(0, 7]": 0.1
+      "(7, 30]": 0.2
+      "(30, 90]": 0.3
+      "(90, 180]": 0.25
+      "(180, 365]": 0.15 
